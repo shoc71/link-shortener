@@ -9,7 +9,7 @@
     "build": "cd client; npm run build",
     "start": "node server/index.js",
     "start:dev": "concurrently \"nodemon server/index.js \" \"cd client && npm run start \" ",
-    "install:all": "npm install --prefix server && npm install --prefix client",
+    "install:all": "npm install --prefix server && npm install --prefix client --legacy-peer-deps",
     "clean:node_modules": "find . -name 'node_modules' -type d -prune -exec rm -fr '{}' \\;",
     "clean:package-lock": "find . -name 'package-lock.json' -type f -delete",
     "clean:all": "npm run clean:package-lock && npm run clean:node_modules"
