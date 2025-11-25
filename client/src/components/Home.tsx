@@ -174,6 +174,7 @@ export function Home() {
                                 <a 
                                     href={`${BASE_SHORT}/${l.newLink}`} 
                                     target="_blank" 
+                                    rel="noreferrer"
                                 >
                                     {BASE_SHORT}/{l.newLink}
                                 </a>
@@ -191,7 +192,8 @@ export function Home() {
             </div>
            <footer className='bg'>
                 <div className="p-4 d-flex justify-content-between">
-                    <a href="../index.html" className="btn btn-outline-primary text-white d-flex align-items-center">
+                    <a href="../index.html" rel="noreferrer"
+                    className="btn btn-outline-primary text-white d-flex align-items-center">
                         <img 
                             src="https://shorturl.at/qhIwu" 
                             alt="home"
@@ -199,7 +201,8 @@ export function Home() {
                         />
                         <span className="mx-2">Return To Home</span>
                     </a>
-                    <a href="https://github.com/shoc71/link-shortener" target="_blank" className="btn btn-sm btn-white d-flex align-items-center">
+                    <a href="https://github.com/shoc71/link-shortener" target="_blank" rel="noreferrer"
+                    className="btn btn-sm btn-white d-flex align-items-center">
                         <img 
                             src={GitHubLogo} 
                             alt="Github Icon"
