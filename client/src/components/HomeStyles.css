@@ -1,0 +1,60 @@
+:root {
+  --primary-bg-color: black;
+  --primary-text-color: white;
+  --screen-height: 100vh
+}
+
+.main {
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+    /* min-height: var(--screen-height); */
+    display: flex;
+}
+
+.x-center {
+  justify-content: center;
+}
+
+.y-center {
+  align-items: center;
+}
+
+/* insert link */
+
+.og-link {
+    min-height: 10vh;
+}
+
+#og-link {
+    margin-left: 5px;
+    margin-right: 3px;
+    width: 350px;
+    cursor: auto;
+}
+
+#submit {
+    background-color: #555555;
+    color: var(--primary-text-color);
+    border: white;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+#submit:hover {
+    background-color: #04AA6D;
+    color: white;
+    border: white;
+}
+
+/* returned link */
+
+.new-link {
+    min-height: 10vh;
+}
+
+/* filler */
+.filler {
+    min-height: var(--screen-height);
+    color: white;
+}

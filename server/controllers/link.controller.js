@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const Link = require('../models/link.model');
 
+
 exports.getAllLinks = async (req, res) => {
     try {
-        const link = await Link.find({});
-        res.status(200).json({ success: true, data: { link } });
+        const link = await Link.find().sort({ _id: -1 });
+        return res.status(200).json({ success: true, data: link });
     } catch (error) {
         console.error("Server Error Create product: ", error.message);
-        res.status(500).json({ success: false, message: "Server Error Create product: ", error });
+        return res.status(500).json({ success: false, message: "Server Error Create product: ", error });
     }
 }
 
@@ -15,16 +16,23 @@ exports.createLink = async (req, res) => {
     try {
         const { originalLink, newLink } = req.body
 
+        if (!originalLink || !originalLink.trim()) {
+            return res.status(400).json({ success: false, error: "Original URL is required" });
+        }
+
         const link = await Link.create({
             originalLink,
             newLink
         })
         
-        res.status(201).json({ success: true, data: link });
+        return res.status(201).json({ success: true, data: link });
 
     } catch (error) {
+        if (e.code === 11000) {
+            return res.status(400).json({ success: false, error: "This URL already exists" });
+        }
         console.error("Server Error Create Link(s): ", error.message);
-        res.status(500).json({ success: false, message: "Server Error Create Link(s): ", error });
+        return res.status(500).json({ success: false, message: "Server Error Create Link(s): ", error });
     }
 }
 
@@ -38,13 +46,17 @@ exports.deleteLink = async (req, res) => {
     
     try {
         
-        await Link.findByIdAndDelete(req.params.id)
+        const deleted = await Link.findByIdAndDelete(req.params.id)
 
-        res.status(204).json({ success: true, message: 'Link successfully deleted'})
+        if (!deleted) {
+            return res.status(404).json({ success: false, error: "Link not found" });
+        }
+
+        return res.status(204).json({ success: true, data: deleted })
 
     } catch (error) {
         console.error("Server Error Delete Link(s): ", error.message);
-        res.status(500).json({ success: false, message: "Server Error Delete Link(s): ", error });
+        return res.status(500).json({ success: false, message: "Server Error Delete Link(s): ", error });
     }
 }
 

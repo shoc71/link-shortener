@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB  = require('./config/db');
-const { createLink, deleteLink, getAllLinks } = require('./controllers/link.controller');
+const Link = require('./models/link.model');
+const linkRoutes = require("./routes/link.route.js")
 require('dotenv').config();
 
 const app = express();
@@ -10,9 +11,18 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3001;
 
-app.use("/api/add", createLink)
-app.use("/api/delete/:id", deleteLink)
-app.use("/api/getAll", getAllLinks)
+app.use("/api", linkRoutes);
+
+app.get("/:short", async (req, res) => {
+  try {
+    const { short } = req.params;
+    const link = await Link.findOne({ newLink: short });
+    if (!link) return res.status(404).send("Short link not found");
+    return res.redirect(link.originalLink);
+  } catch (err) {
+    res.status(500).send("Server error");
+  }
+});
 
 app.listen(PORT, () => {
     connectDB();
