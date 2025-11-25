@@ -174,7 +174,6 @@ export function Home() {
                                 <a 
                                     href={`${BASE_SHORT}/${l.newLink}`} 
                                     target="_blank" 
-                                    rel="noopener noreferrer"
                                 >
                                     {BASE_SHORT}/{l.newLink}
                                 </a>
