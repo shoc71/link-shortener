@@ -38,11 +38,11 @@ exports.createLink = async (req, res) => {
 
 exports.deleteLink = async (req, res) => {
     
-    const link = await Link.findById(req.params.id);
+    // const link = await Link.findById(req.params.id);
 
-    if (!link) {
-        return res.status(404).json({ success: false, message: "Link(s) not found" });
-    }
+    // if (!link) {
+    //     return res.status(404).json({ success: false, message: "Link(s) not found" });
+    // }
     
     try {
         

@@ -58,3 +58,18 @@
     min-height: var(--screen-height);
     color: white;
 }
+
+.bg {
+    background-color: var(--primary-bg-color);
+}
+
+.btn-white{
+  background-color: black;
+  color: white;
+  border-color: white;
+}
+
+.btn-white:hover{
+  background-color: white;
+  color: black;
+}

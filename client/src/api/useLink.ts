@@ -28,11 +28,15 @@ export async function getAllLinks(): Promise<{ success: boolean; data: LinkItem[
   return { success: true, data: data.data };
 }
 
-export async function deleteLink( id: String ) {
-  const res = await fetch(`${BASEURL}/delete/${id}`, {
-    method: "DELETE",
-  });
+export async function deleteLink(id: string) {
+  const res = await fetch(`${BASEURL}/delete/${id}`, { method: "DELETE" });
 
-  const data = await res.json();
-  return data;
+  const contentLength = res.headers.get("content-length");
+
+  if (!contentLength || contentLength === "0") {
+    return { success: true };
+  }
+
+  return await res.json();
 }
+

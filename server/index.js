@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const connectDB  = require('./config/db');
 const Link = require('./models/link.model');
@@ -11,7 +12,44 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3001;
 
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.log("MongoDB connection error:", err));
+
+// ------------------------------
+// Heartbeat route
+// ------------------------------
+app.get("/heartbeat", async (req, res) => {
+  const state = mongoose.connection.readyState;
+  /**
+   * 0 = disconnected
+   * 1 = connected
+   * 2 = connecting
+   * 3 = disconnecting
+   */
+  if (state === 1) {
+    return res.json({ alive: true, message: "MongoDB is connected" });
+  } else {
+    return res.status(503).json({ alive: false, message: "MongoDB is not connected. Attempting Reconnection..." });
+  }
+});
+
+// optional endpoint to trigger manual reconnect
+app.get("/api/reconnectMongo", async (req, res) => {
+  await reconnectMongo();
+  res.json({ success: mongoose.connection.readyState === 1 });
+});
+
+// ------------------------------
+// API routes
+// ------------------------------
 app.use("/api", linkRoutes);
+
+// ------------------------------
+// Catch-all redirect route
+// Must be last
+// ------------------------------
 
 app.get("/:short", async (req, res) => {
   try {

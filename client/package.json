@@ -13,6 +13,10 @@
     "@types/react-dom": "^19.2.3",
     "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
+    "datatables.net": "^2.3.5",
+    "datatables.net-bs5": "^2.3.5",
+    "datatables.net-dt": "^2.3.5",
+    "jquery": "^3.7.1",
     "nanoid": "^5.1.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -46,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.33"
   }
 }
