@@ -51,6 +51,15 @@ app.use("/api", linkRoutes);
 // Must be last
 // ------------------------------
 
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
+
+
 app.get("/:short", async (req, res) => {
   try {
     const { short } = req.params;
