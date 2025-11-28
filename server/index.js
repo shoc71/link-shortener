@@ -55,10 +55,9 @@ const path = require("path");
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => { // Express 5 requires /* to be caught first
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
-
 
 app.get("/:short", async (req, res) => {
   try {
