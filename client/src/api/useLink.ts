@@ -1,5 +1,5 @@
 
-const BASEURL = `${process.env.BACKEND}/api`
+const BASEURL = `https://link-shortener-1-3jpx.onrender.com/api`
 
 export interface LinkItem {
   _id: string;
