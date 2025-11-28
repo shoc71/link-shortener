@@ -53,8 +53,8 @@ app.use("/api", linkRoutes);
 
 const path = require("path");
 
-// Serve static files FIRST
-app.use(express.static(path.join(__dirname, "../client/build")));
+// // Serve static files FIRST
+// app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("/:short", async (req, res) => {
   try {
@@ -67,10 +67,10 @@ app.get("/:short", async (req, res) => {
   }
 });
 
-// React fallback — MUST be "*" in Express 5 when a param route exists
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});
+// // React fallback — MUST be "*" in Express 5 when a param route exists
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+// });
 
 
 app.listen(PORT, () => {
