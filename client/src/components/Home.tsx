@@ -23,7 +23,7 @@ export function generateRandomShort() {
 const isProd = window.location.hostname !== "localhost";
 
 export const BASE_SHORT = isProd
-  ? "https://link-shortener-1-3jpx.onrender.com"
+  ? `${process.env.BACKEND}`
   : "http://localhost:5000";
 
 

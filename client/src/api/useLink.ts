@@ -1,5 +1,5 @@
 
-const BASEURL = "http://localhost:5000/api";
+const BASEURL = `${process.env.BACKEND}/api`
 
 export interface LinkItem {
   _id: string;
