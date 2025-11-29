@@ -106,9 +106,26 @@ export function Home() {
             $("#linksTable").DataTable({
                 paging: true,
                 searching: true,
-                info: true,
+                // info: true,
                 pageLength: 5,
-                lengthMenu: [5, 10, 25, 50],
+                lengthMenu: [5, 10, 25, 50, 100],
+                responsive: {
+                     details: {
+                        type: 'column',
+                        target: 0,
+                        display: $.fn.dataTable.Responsive.display.modal({
+                            header: function (row:any) {
+                                return 'Details for ' + row.data()[1]; // show short link in modal header
+                            }
+                        })
+                    }
+                },
+                columnDefs : [{
+                    className: "control",
+                    orderable: false,
+                    targets: 0
+                }],
+                // order : [ 0, 'desc']
             });
         }, 1000);
     }, [links]);
@@ -150,8 +167,12 @@ export function Home() {
             <button className="btn btn-warning" onClick={pingServer}>Check Server</button>
             </div>
 
-            <div className="main new-link x-center y-center">
+            <div className="d-flex align-items-center justify-content-center m-4">
                 * This is highly experimental
+            </div>
+
+            <div className="d-flex align-items-center justify-content-center mb-4">
+                This website server is run on a free-instance. Give it a minute to spin up.
             </div>
             
             <div className="mb-4 border border-white p-5">
@@ -161,6 +182,7 @@ export function Home() {
                     className="table table-dark table-bordered table-striped table-hover">
                     <thead className="thead-light">
                         <tr className="border border-white">
+                            <th>ID</th>
                             <th>Short</th>
                             <th>Original</th>
                             <th>Actions</th>
@@ -168,23 +190,24 @@ export function Home() {
                     </thead>
 
                     <tbody className="border border-white">
-                        {links.map((l) => (
+                        {links.map((l, index) => (
                             <tr key={l._id}>
-                            <td>
-                                <a 
-                                    href={`${BASE_SHORT}/${l.newLink}`} 
-                                    target="_blank" 
-                                    rel="noreferrer"
-                                >
-                                    {BASE_SHORT}/{l.newLink}
-                                </a>
-                            </td>
-                            <td>{l.originalLink}</td>
-                            <td>
-                                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(l._id)}>
-                                    Delete
-                                </button>
-                            </td>
+                                <td>{index}</td>
+                                <td>
+                                    <a 
+                                        href={`${BASE_SHORT}/${l.newLink}`} 
+                                        target="_blank" 
+                                        rel="noreferrer"
+                                    >
+                                        {BASE_SHORT}/{l.newLink}
+                                    </a>
+                                </td>
+                                <td>{l.originalLink}</td>
+                                <td>
+                                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(l._id)}>
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
