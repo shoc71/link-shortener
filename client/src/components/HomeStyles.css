@@ -5,10 +5,10 @@
 }
 
 .main {
-    background-color: var(--primary-bg-color);
-    color: var(--primary-text-color);
-    /* min-height: var(--screen-height); */
-    display: flex;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  /* min-height: var(--screen-height); */
+  display: flex;
 }
 
 .x-center {
@@ -22,45 +22,45 @@
 /* insert link */
 
 .og-link {
-    min-height: 10vh;
+  min-height: 10vh;
 }
 
 #og-link {
-    margin-left: 5px;
-    margin-right: 3px;
-    width: 350px;
-    cursor: auto;
+  margin-left: 5px;
+  margin-right: 3px;
+  width: 350px;
+  cursor: auto;
 }
 
 #submit {
-    background-color: #555555;
-    color: var(--primary-text-color);
-    border: white;
-    cursor: pointer;
-    padding: 8px 10px;
-    border-radius: 8px;
+  background-color: #555555;
+  color: var(--primary-text-color);
+  border: white;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
 }
 
 #submit:hover {
-    background-color: #04AA6D;
-    color: white;
-    border: white;
+  background-color: #04AA6D;
+  color: white;
+  border: white;
 }
 
 /* returned link */
 
 .new-link {
-    min-height: 10vh;
+  min-height: 10vh;
 }
 
 /* filler */
 .filler {
-    min-height: var(--screen-height);
-    color: white;
+  min-height: var(--screen-height);
+  color: white;
 }
 
 .bg {
-    background-color: var(--primary-bg-color);
+  background-color: var(--primary-bg-color);
 }
 
 .btn-white{
@@ -72,4 +72,8 @@
 .btn-white:hover{
   background-color: white;
   color: black;
+}
+
+.w200 {
+  max-width: 200px;
 }

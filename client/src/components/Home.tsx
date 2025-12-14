@@ -5,7 +5,10 @@ import GitHubLogo from "../github-logo.png";
 import $ from "jquery";
 import "datatables.net-bs5";
 import "datatables.net-bs5/css/dataTables.bootstrap5.min.css"; 
-import "bootstrap/dist/css/bootstrap.min.css"; 
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'datatables.net-react';
+import 'datatables.net-dt';
+import 'datatables.net-bs5';
 
 import { pingServer } from "./HeartbeatMonitor";
 
@@ -202,7 +205,11 @@ export function Home() {
                                         {BASE_SHORT}/{l.newLink}
                                     </a>
                                 </td>
-                                <td>{l.originalLink}</td>
+                                <td 
+                                    className="text-truncate w200"
+                                    >
+                                        {l.originalLink}
+                                </td>
                                 <td>
                                     <button className="btn btn-danger btn-sm" onClick={() => handleDelete(l._id)}>
                                         Delete
