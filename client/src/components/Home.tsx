@@ -222,15 +222,22 @@ export function Home() {
             </div>
            <footer className='bg'>
                 <div className="p-4 d-flex justify-content-between">
-                    <a href="../index.html" rel="noreferrer"
-                    className="btn btn-outline-primary text-white d-flex align-items-center">
+
+                    <a href="https://shoc71.github.io/eDash/" target="_blank" rel="noreferrer"
+                    className="btn btn-sm btn-white mx-4">
                         <img 
-                            src="https://shorturl.at/qhIwu" 
-                            alt="home"
-                            width="40"    
+                            src="./assets/images/compass.png" 
+                            alt="Compass Icon"
+                            className="rounded"
+                            width="50"
                         />
-                        <span className="mx-2">Return To Home</span>
+                        <span className="mx-2">
+                            <strong>
+                                Other Works
+                            </strong>
+                        </span>
                     </a>
+
                     <a href="https://github.com/shoc71/link-shortener" target="_blank" rel="noreferrer"
                     className="btn btn-sm btn-white d-flex align-items-center">
                         <img 

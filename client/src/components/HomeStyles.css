@@ -74,6 +74,19 @@
   color: black;
 }
 
+.btn-grey{
+  background-color: black;
+  color: white;
+  border-color: white;
+}
+
+.btn-grey:hover{
+  background-color: grey;
+  color: white;
+  border-color: grey;
+}
+
+
 .w200 {
   max-width: 200px;
 }
