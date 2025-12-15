@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import toast from "react-hot-toast";
 import GitHubLogo from "../github-logo.png";
+import compassImg from "../compass copy.png";
 import $ from "jquery";
 import "datatables.net-bs5";
 import "datatables.net-bs5/css/dataTables.bootstrap5.min.css"; 
@@ -15,7 +16,6 @@ import { pingServer } from "./HeartbeatMonitor";
 import "./HomeStyles.css"
 
 import { addLink, getAllLinks, deleteLink, LinkItem } from "../api/useLink";
-// import HeartbeatMonitor from "./HeartbeatMonitor";
 
 export function generateRandomShort() {
     const shortKey = nanoid(10);
@@ -27,10 +27,8 @@ const isProd = window.location.hostname !== "localhost";
 
 export const BASE_SHORT = isProd
   ? `https://link-shortener-1-3jpx.onrender.com`
-  : "http://localhost:5000";
+: "http://localhost:5000";
 
-
-// export const BASE_SHORT = "http://localhost:5000";
 
 function generateShort(): string {
   return nanoid(10);
@@ -140,22 +138,26 @@ export function Home() {
             <h1 className="card-title text-center p-4 mb-4">
                 Link Shortener
             </h1>
+
             <div className="flex justify-content-center align-items-center">
-                <form onSubmit={handleAdd}>
+                <form 
+                    className="d-flex align-items-center"
+                    onSubmit={handleAdd}
+                >
                     <label htmlFor="og-link">OG-Link:</label>
                     <input 
                         type="text" 
-                        id="og-link" 
-
+                        id="og-link"
+                        className="form-control bg-dark text-white border-secondary" 
                         value={original}
                         onChange={(e) => setOriginal(e.target.value)}
-
                         placeholder="Enter original URL" 
                         />
 
                     <button id="submit">Submit</button>
                 </form>
             </div>
+
             <div className="main x-center my-4">
                 <label>
                     <input
@@ -196,7 +198,7 @@ export function Home() {
                         {links.map((l, index) => (
                             <tr key={l._id}>
                                 <td>{index}</td>
-                                <td>
+                                <td className="text-truncare w350">
                                     <a 
                                         href={`${BASE_SHORT}/${l.newLink}`} 
                                         target="_blank" 
@@ -226,7 +228,7 @@ export function Home() {
                     <a href="https://shoc71.github.io/eDash/" target="_blank" rel="noreferrer"
                     className="btn btn-sm btn-white mx-4">
                         <img 
-                            src="./assets/images/compass.png" 
+                            src={compassImg}
                             alt="Compass Icon"
                             className="rounded"
                             width="50"

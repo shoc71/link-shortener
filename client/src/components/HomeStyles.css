@@ -86,7 +86,15 @@
   border-color: grey;
 }
 
-
 .w200 {
   max-width: 200px;
+}
+
+.w300 {
+  max-width: 300px;
+}
+
+.form-control::placeholder{
+  color: white;
+  opacity: 1;
 }
