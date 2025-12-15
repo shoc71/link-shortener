@@ -198,7 +198,7 @@ export function Home() {
                         {links.map((l, index) => (
                             <tr key={l._id}>
                                 <td>{index}</td>
-                                <td className="text-truncare w350">
+                                <td className="text-truncare w300">
                                     <a 
                                         href={`${BASE_SHORT}/${l.newLink}`} 
                                         target="_blank" 
