@@ -132,44 +132,51 @@ export function Home() {
     }, [links]);
 
     return(
-        <div className="bg text-white p-4 min-vh-100">
+        <div className="bg-black text-white p-4 min-vh-100">
 
-            <div className="card bg text-white border mt-4">
-            <h1 className="card-title text-center p-4 mb-4">
-                Link Shortener
-            </h1>
+            <div className="card rounded bg-black text-white border mt-4">
+                <h1 className="card-title text-center p-4 mb-4">
+                    Link Shortener
+                </h1>
 
-            <div className="flex justify-content-center align-items-center">
-                <form 
-                    className="d-flex align-items-center"
-                    onSubmit={handleAdd}
-                >
-                    <label htmlFor="og-link">OG-Link:</label>
-                    <input 
-                        type="text" 
-                        id="og-link"
-                        className="form-control bg-dark text-white border-secondary" 
-                        value={original}
-                        onChange={(e) => setOriginal(e.target.value)}
-                        placeholder="Enter original URL" 
+                <div className="d-flex flex-column">
+                    <form 
+                        className="d-flex flex-column w-100"
+                        onSubmit={handleAdd}
+                    >
+                        <div className="d-flex align-items-center w-100 mb-2 p-2">
+                            <span className="input-group-text bg-dark text-white">OG-Link:</span>   
+                            <input 
+                                type="text" 
+                                id="og-link"
+                                className="form-control bg-dark text-white border-secondary" 
+                                value={original}
+                                style={{ minWidth: "200px", flexGrow: 1 }}
+                                onChange={(e) => setOriginal(e.target.value)}
+                                placeholder="Enter original URL" 
+                            />
+                        </div>
+
+                        <button className="btn btn-success flex px-5" id="submit">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+
+                <div className="main my-4 w-100">
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={confirmed}
+                            className="mx-2"
+                            onChange={(e) => setConfirmed(e.target.checked)}
                         />
-
-                    <button id="submit">Submit</button>
-                </form>
-            </div>
-
-            <div className="main x-center my-4">
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={confirmed}
-                        className="mx-2"
-                        onChange={(e) => setConfirmed(e.target.checked)}
-                    />
-                    I confirm this URL is correct
-                </label>
-            </div>
-            <button className="btn btn-warning" onClick={pingServer}>Check Server</button>
+                        I confirm this URL is correct
+                    </label>
+                </div>
+                <div className="d-flex justify-content-center">
+                    <button className="btn btn-warning w-100" onClick={pingServer}>Check Server</button>
+                </div>
             </div>
 
             <div className="d-flex align-items-center justify-content-center m-4">
@@ -181,48 +188,82 @@ export function Home() {
             </div>
             
             <div className="mb-4 border border-white p-5">
-                <h2>All Links</h2>
-                <table 
-                    id="linksTable" 
-                    className="table table-dark table-bordered table-striped table-hover">
-                    <thead className="thead-light">
-                        <tr className="border border-white">
-                            <th>ID</th>
-                            <th>Short</th>
-                            <th>Original</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
+                <h2 className="mb-4">All Links</h2>
 
-                    <tbody className="border border-white">
-                        {links.map((l, index) => (
-                            <tr key={l._id}>
-                                <td>{index}</td>
-                                <td className="text-truncare w300">
-                                    <a 
-                                        href={`${BASE_SHORT}/${l.newLink}`} 
-                                        target="_blank" 
-                                        rel="noreferrer"
-                                    >
-                                        {BASE_SHORT}/{l.newLink}
-                                    </a>
-                                </td>
-                                <td 
-                                    className="text-truncate w200"
-                                    >
-                                        {l.originalLink}
-                                </td>
-                                <td>
-                                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(l._id)}>
-                                        Delete
-                                    </button>
-                                </td>
+                {/* desktop */}
+                <div className="table-responsive d-none d-lg-block w-100">
+                    <table 
+                        id="linksTable" 
+                        className="table table-dark table-bordered table-striped table-hover">
+                        <thead className="thead-light">
+                            <tr className="border border-white">
+                                <th>ID</th>
+                                <th>Short</th>
+                                <th>Original</th>
+                                <th>Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody className="border border-white">
+                            {links.map((l, index) => (
+                                <tr key={l._id}>
+                                    <td>{index}</td>
+                                    <td>
+                                        <a 
+                                            href={`${BASE_SHORT}/${l.newLink}`} 
+                                            target="_blank" 
+                                            rel="noreferrer"
+                                        >
+                                            {BASE_SHORT}/{l.newLink}
+                                        </a>
+                                    </td>
+                                    <td 
+                                        className="text-truncate w200" title={l.originalLink}
+                                        >
+                                            {l.originalLink}
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(l._id)}>
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+                {/* mobile */}
+                <div className="bg-black text-white d-lg-none">
+                    {links.map((l, index) => (
+                        <div className="card bg-black text-white border-white">
+                            <h3 className="card-title pt-4 px-4">{index}</h3>
+                            <div className="card-body">
+                                <ul>
+                                    <li>
+                                        <a 
+                                            href={`${BASE_SHORT}/${l.newLink}`} 
+                                            target="_blank" 
+                                            rel="noreferrer"
+                                        >
+                                            {BASE_SHORT}/{l.newLink}
+                                        </a>
+                                    </li>
+                                    <li className="text-truncate" title={l.originalLink}>
+                                        {l.originalLink}
+                                    </li>
+                                    <li>
+                                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(l._id)}>
+                                            Delete
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-           <footer className='bg'>
+           <footer className='bg-black'>
                 <div className="p-4 d-flex justify-content-between">
 
                     <a href="https://shoc71.github.io/eDash/" target="_blank" rel="noreferrer"
